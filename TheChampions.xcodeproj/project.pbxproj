@@ -8,22 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		D7EF25B91E61D424001748DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25B81E61D424001748DB /* AppDelegate.swift */; };
-		D7EF25BB1E61D424001748DB /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25BA1E61D424001748DB /* FirstViewController.swift */; };
-		D7EF25BD1E61D424001748DB /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25BC1E61D424001748DB /* SecondViewController.swift */; };
 		D7EF25C01E61D424001748DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7EF25BE1E61D424001748DB /* Main.storyboard */; };
 		D7EF25C21E61D424001748DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7EF25C11E61D424001748DB /* Assets.xcassets */; };
 		D7EF25C51E61D424001748DB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7EF25C31E61D424001748DB /* LaunchScreen.storyboard */; };
+		D7EF25CD1E62071C001748DB /* ClubeTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25CC1E62071C001748DB /* ClubeTableVC.swift */; };
+		D7EF25CF1E6225D3001748DB /* VendaVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25CE1E6225D3001748DB /* VendaVC.swift */; };
+		D7EF25D11E6227E5001748DB /* JogadorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25D01E6227E5001748DB /* JogadorVC.swift */; };
+		D7EF25D31E622CD4001748DB /* JogadorTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25D21E622CD4001748DB /* JogadorTVCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D7EF25B51E61D424001748DB /* TheChampions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheChampions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EF25B81E61D424001748DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D7EF25BA1E61D424001748DB /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		D7EF25BC1E61D424001748DB /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		D7EF25BF1E61D424001748DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D7EF25C11E61D424001748DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D7EF25C41E61D424001748DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D7EF25C61E61D424001748DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7EF25CC1E62071C001748DB /* ClubeTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ClubeTableVC.swift; path = ../ClubeTableVC.swift; sourceTree = "<group>"; };
+		D7EF25CE1E6225D3001748DB /* VendaVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VendaVC.swift; sourceTree = "<group>"; };
+		D7EF25D01E6227E5001748DB /* JogadorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorVC.swift; sourceTree = "<group>"; };
+		D7EF25D21E622CD4001748DB /* JogadorTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorTVCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +60,11 @@
 		D7EF25B71E61D424001748DB /* TheChampions */ = {
 			isa = PBXGroup;
 			children = (
+				D7EF25CC1E62071C001748DB /* ClubeTableVC.swift */,
+				D7EF25D21E622CD4001748DB /* JogadorTVCell.swift */,
+				D7EF25CE1E6225D3001748DB /* VendaVC.swift */,
+				D7EF25D01E6227E5001748DB /* JogadorVC.swift */,
 				D7EF25B81E61D424001748DB /* AppDelegate.swift */,
-				D7EF25BA1E61D424001748DB /* FirstViewController.swift */,
-				D7EF25BC1E61D424001748DB /* SecondViewController.swift */,
 				D7EF25BE1E61D424001748DB /* Main.storyboard */,
 				D7EF25C11E61D424001748DB /* Assets.xcassets */,
 				D7EF25C31E61D424001748DB /* LaunchScreen.storyboard */,
@@ -140,9 +146,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D7EF25BD1E61D424001748DB /* SecondViewController.swift in Sources */,
 				D7EF25B91E61D424001748DB /* AppDelegate.swift in Sources */,
-				D7EF25BB1E61D424001748DB /* FirstViewController.swift in Sources */,
+				D7EF25D11E6227E5001748DB /* JogadorVC.swift in Sources */,
+				D7EF25CD1E62071C001748DB /* ClubeTableVC.swift in Sources */,
+				D7EF25CF1E6225D3001748DB /* VendaVC.swift in Sources */,
+				D7EF25D31E622CD4001748DB /* JogadorTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
