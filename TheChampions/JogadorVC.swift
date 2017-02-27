@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class JogadorVC: UIViewController {
 
@@ -27,6 +28,11 @@ class JogadorVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let colors:[UIColor] = [
+            FlatLime(),
+            FlatMint()
+        ]
+        self.view.backgroundColor = GradientColor(.leftToRight, frame: view.frame, colors: colors)
 
         // Do any additional setup after loading the view.
     }

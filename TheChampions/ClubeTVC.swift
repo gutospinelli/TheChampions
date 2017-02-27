@@ -25,13 +25,6 @@ class ClubeTVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             ("GK","GianLuiggi Buffon","🇮🇹","90","310.000"),
             ("DEF","Chiellini","🇮🇹","82","100.000")
         ]
-//    
-//    var estudoArray : [(materia: String, data: Date, tempo: String)] = [] {
-//        didSet {
-//            estudoArray.sort { $0.data > $1.data}
-//            tblViewEstudoDiario.reloadData()
-//        }
-//    }
     
     
     override func viewDidLoad() {

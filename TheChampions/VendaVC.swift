@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class VendaVC: UIViewController {
 
@@ -30,6 +31,13 @@ class VendaVC: UIViewController {
         
         lblValor.text = valor
         lblJogador.text = jogador
+        
+        let colors:[UIColor] = [
+            FlatOrange(),
+            FlatYellow()
+            
+        ]
+        self.view.backgroundColor = GradientColor(.radial, frame: view.frame, colors: colors)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
