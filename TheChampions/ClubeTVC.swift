@@ -7,51 +7,70 @@
 //
 
 import UIKit
+import RealmSwift
 
 
 
 class ClubeTVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    
-    @IBOutlet weak var tableViewJogadores: UITableView!
-    
-    var jogadores : [(
-        posicao: String,
-        nome: String,
-        nacionalidadeImg: String,
-        overall: String,
-        salario: String)] =
-        [
-            ("GK","GianLuiggi Buffon","🇮🇹","90","310.000"),
-            ("DEF","Chiellini","🇮🇹","82","100.000")
-        ]
-    
-    
+  // MARK: - Outlets
+  @IBOutlet weak var tableViewJogadores: UITableView!
+  @IBOutlet weak var lblNomeClube: UILabel!
+  @IBOutlet weak var lblNomeClubeCasa: UILabel!
+  @IBOutlet weak var lblPaisClubeCasa: UILabel!
+  @IBOutlet weak var lblNomeClubeFora: UILabel!
+  @IBOutlet weak var lblPaisClubeFora: UILabel!
+  @IBOutlet weak var lblEstadio: UILabel!
+  @IBOutlet weak var lblCapacidadeEstadio: UILabel!
+  @IBOutlet weak var lblTecnico: UILabel!
+  @IBOutlet weak var lblTemporada: UILabel!
+  @IBOutlet weak var lblValorCaixa: UILabel!
+  @IBOutlet weak var lblValorSalarios: UILabel!
+  @IBOutlet weak var lblPontos: UILabel!
+  @IBOutlet weak var lblPosicao: UILabel!
+  
+  // MARK: - Carregamento VC
+  var jogadores : [Jogador] = []
+  var realm = try! Realm()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         tableViewJogadores.delegate = self
+
         tableViewJogadores.dataSource = self
+      
+      if BaseDados.instance.jogadores.count == 0 {
+        BaseDados.instance.deleteAllDatabase()
+        BaseDados.instance.clubes.append(BaseDados.instance.createBarca())
+        BaseDados.instance.clubes.append(BaseDados.instance.createReal())
+        BaseDados.instance.startTemporada(inicioEm: 2017, participantes: BaseDados.instance.clubes)
+      }
+      
+      let results = realm.objects(Clube.self).filter("name = 'Barcelona FC'")
+      let clubeAtual = results[0]
+      jogadores = Array(clubeAtual.elenco)
+      lblNomeClube.text = clubeAtual.name
+      lblNomeClubeCasa.text = clubeAtual.name
+      lblEstadio.text = clubeAtual.estadio?.nome
+      let capacidade : Int = (clubeAtual.estadio?.assentos)!
+      lblCapacidadeEstadio.text = "\(capacidade)"
+      lblTecnico.text = clubeAtual.tecnico
+      lblValorCaixa.text = "\(clubeAtual.valorCaixa)"
+      let somaSalarios : Int = clubeAtual.elenco.sum(ofProperty: "salario")
+      lblValorSalarios.text = "\(somaSalarios)"
+      
+      //lblPosicao.text = "\(clubeAtual.posicaoTemporadaAtual?.posicao)"
+      //lblPontos.text = "\(clubeAtual.posicaoTemporadaAtual?.pontos)"
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
-    // MARK: - Table view data source
-
+    // MARK: - Table View
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return jogadores.count
     }
 
@@ -59,57 +78,15 @@ class ClubeTVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "jogadorCell", for: indexPath) as! JogadorTVCell
         cell.lblNome.text = jogadores[indexPath.row].nome
-        cell.lblOverall.text = jogadores[indexPath.row].overall
+        cell.lblOverall.text = "\(jogadores[indexPath.row].overall)"
         cell.lblPosicao.text = jogadores[indexPath.row].posicao
-        cell.lblNacionalidadeImg.text = jogadores[indexPath.row].nacionalidadeImg
-        cell.lblSalario.text = jogadores[indexPath.row].salario
-        
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        //cell.lbDesc.text = materias[indexPath.row]
-        //cell.lbNum.text = String(indexPath.row + 1)
+        cell.lblNacionalidadeImg.text = jogadores[indexPath.row].nacionalidade
+        cell.lblSalario.text =  "\(jogadores[indexPath.row].salario)"
         return cell
     }
-    
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             switch identifier {

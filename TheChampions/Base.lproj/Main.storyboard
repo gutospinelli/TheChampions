@@ -72,7 +72,7 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="L0U-Im-Q5F" id="GBY-8v-VGn">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="27"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="28"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="GK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QS7-YM-KK6">
@@ -322,6 +322,19 @@
                     </view>
                     <navigationItem key="navigationItem" title="Clube" id="s0K-ex-lkI"/>
                     <connections>
+                        <outlet property="lblCapacidadeEstadio" destination="jMc-a9-hHE" id="ZhB-fp-VpC"/>
+                        <outlet property="lblEstadio" destination="ziF-eC-eEU" id="esv-XH-rZd"/>
+                        <outlet property="lblNomeClube" destination="oh3-mO-fnk" id="bvY-Nh-DqO"/>
+                        <outlet property="lblNomeClubeCasa" destination="MNI-te-ehV" id="c3o-5D-nTa"/>
+                        <outlet property="lblNomeClubeFora" destination="4yU-SA-9wr" id="h5m-OO-J4T"/>
+                        <outlet property="lblPaisClubeCasa" destination="E5K-ZU-rRd" id="mHO-Zk-mff"/>
+                        <outlet property="lblPaisClubeFora" destination="4K8-qn-FY5" id="liv-bz-plt"/>
+                        <outlet property="lblPontos" destination="Ogo-GO-VZH" id="hlh-ua-7Ce"/>
+                        <outlet property="lblPosicao" destination="TTK-iY-Kuh" id="cZn-hd-o5I"/>
+                        <outlet property="lblTecnico" destination="Z7r-Xn-Sh6" id="LgY-7h-9Ye"/>
+                        <outlet property="lblTemporada" destination="ptX-1w-Irk" id="7dC-HW-Z5Y"/>
+                        <outlet property="lblValorCaixa" destination="1wd-7q-eNa" id="nvn-Fj-c86"/>
+                        <outlet property="lblValorSalarios" destination="Urh-zz-FMT" id="PvX-ou-usQ"/>
                         <outlet property="tableViewJogadores" destination="0iE-ox-4kX" id="cuo-sC-0ra"/>
                     </connections>
                 </viewController>
@@ -577,7 +590,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="por" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNx-rk-zjT">
-                                        <rect key="frame" x="102" y="72" width="31" height="36"/>
+                                        <rect key="frame" x="102.5" y="72" width="31" height="36"/>
                                         <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -589,7 +602,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="QzA-jy-g3U">
-                                        <rect key="frame" x="64.5" y="144" width="106" height="36"/>
+                                        <rect key="frame" x="65" y="144" width="106" height="36"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heI-O6-itW">
                                                 <rect key="frame" x="0.0" y="0.0" width="37" height="36"/>
@@ -680,7 +693,7 @@
                                         <rect key="frame" x="0.0" y="55" width="375" height="28"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AWx-98-VsM" id="8E4-Si-xpc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="27"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="28"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Transferência Ibrahimovic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YJW-CR-BBW">

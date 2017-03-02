@@ -32,7 +32,7 @@ class JogadorVC: UIViewController {
             FlatLime(),
             FlatMint()
         ]
-        self.view.backgroundColor = GradientColor(.leftToRight, frame: view.frame, colors: colors)
+        self.view.backgroundColor = GradientColor(.topToBottom, frame: view.frame, colors: colors)
 
         // Do any additional setup after loading the view.
     }

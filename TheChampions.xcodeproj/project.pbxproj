@@ -10,6 +10,13 @@
 		042D45CC9C8406A0C4FE6A28 /* Pods_TheChampions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D835F8DF36BC0ED6DD435377 /* Pods_TheChampions.framework */; };
 		D71B9CA21E6352A800336B5E /* FinancasVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B9CA11E6352A800336B5E /* FinancasVC.swift */; };
 		D71B9CA41E635F4300336B5E /* MovimentacaoTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71B9CA31E635F4300336B5E /* MovimentacaoTVCell.swift */; };
+		D71C01AD1E64CC6400E3AF2A /* JogadorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01AC1E64CC6400E3AF2A /* JogadorModel.swift */; };
+		D71C01AF1E64D25D00E3AF2A /* EstadioModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01AE1E64D25D00E3AF2A /* EstadioModel.swift */; };
+		D71C01B11E64D3AB00E3AF2A /* ClubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01B01E64D3AB00E3AF2A /* ClubeModel.swift */; };
+		D71C01B31E65B95000E3AF2A /* MovimentoFinanceiroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01B21E65B95000E3AF2A /* MovimentoFinanceiroModel.swift */; };
+		D71C01B51E65BA3B00E3AF2A /* TemporadaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01B41E65BA3B00E3AF2A /* TemporadaModel.swift */; };
+		D71C01B71E65BC1000E3AF2A /* TabelaClassificacaoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01B61E65BC1000E3AF2A /* TabelaClassificacaoModel.swift */; };
+		D71C01B91E689EDB00E3AF2A /* BaseDados.swift in Sources */ = {isa = PBXBuildFile; fileRef = D71C01B81E689EDB00E3AF2A /* BaseDados.swift */; };
 		D7EF25B91E61D424001748DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7EF25B81E61D424001748DB /* AppDelegate.swift */; };
 		D7EF25C01E61D424001748DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D7EF25BE1E61D424001748DB /* Main.storyboard */; };
 		D7EF25C21E61D424001748DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D7EF25C11E61D424001748DB /* Assets.xcassets */; };
@@ -24,6 +31,13 @@
 		0E7F7A388DFE9D8F084CA671 /* Pods-TheChampions.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheChampions.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheChampions/Pods-TheChampions.debug.xcconfig"; sourceTree = "<group>"; };
 		D71B9CA11E6352A800336B5E /* FinancasVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinancasVC.swift; sourceTree = "<group>"; };
 		D71B9CA31E635F4300336B5E /* MovimentacaoTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovimentacaoTVCell.swift; sourceTree = "<group>"; };
+		D71C01AC1E64CC6400E3AF2A /* JogadorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JogadorModel.swift; sourceTree = "<group>"; };
+		D71C01AE1E64D25D00E3AF2A /* EstadioModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EstadioModel.swift; sourceTree = "<group>"; };
+		D71C01B01E64D3AB00E3AF2A /* ClubeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClubeModel.swift; sourceTree = "<group>"; };
+		D71C01B21E65B95000E3AF2A /* MovimentoFinanceiroModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovimentoFinanceiroModel.swift; sourceTree = "<group>"; };
+		D71C01B41E65BA3B00E3AF2A /* TemporadaModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemporadaModel.swift; sourceTree = "<group>"; };
+		D71C01B61E65BC1000E3AF2A /* TabelaClassificacaoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabelaClassificacaoModel.swift; sourceTree = "<group>"; };
+		D71C01B81E689EDB00E3AF2A /* BaseDados.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDados.swift; sourceTree = "<group>"; };
 		D7EF25B51E61D424001748DB /* TheChampions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheChampions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7EF25B81E61D424001748DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D7EF25BF1E61D424001748DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +73,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		D71C01BA1E68B8FA00E3AF2A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D71C01AC1E64CC6400E3AF2A /* JogadorModel.swift */,
+				D71C01AE1E64D25D00E3AF2A /* EstadioModel.swift */,
+				D71C01B01E64D3AB00E3AF2A /* ClubeModel.swift */,
+				D71C01B21E65B95000E3AF2A /* MovimentoFinanceiroModel.swift */,
+				D71C01B41E65BA3B00E3AF2A /* TemporadaModel.swift */,
+				D71C01B61E65BC1000E3AF2A /* TabelaClassificacaoModel.swift */,
+				D71C01B81E689EDB00E3AF2A /* BaseDados.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		D7EF25AC1E61D423001748DB = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +119,7 @@
 				D7EF25C11E61D424001748DB /* Assets.xcassets */,
 				D7EF25C31E61D424001748DB /* LaunchScreen.storyboard */,
 				D7EF25C61E61D424001748DB /* Info.plist */,
+				D71C01BA1E68B8FA00E3AF2A /* Model */,
 			);
 			path = TheChampions;
 			sourceTree = "<group>";
@@ -228,11 +257,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D7EF25B91E61D424001748DB /* AppDelegate.swift in Sources */,
+				D71C01B51E65BA3B00E3AF2A /* TemporadaModel.swift in Sources */,
+				D71C01AF1E64D25D00E3AF2A /* EstadioModel.swift in Sources */,
 				D71B9CA41E635F4300336B5E /* MovimentacaoTVCell.swift in Sources */,
+				D71C01B71E65BC1000E3AF2A /* TabelaClassificacaoModel.swift in Sources */,
+				D71C01B11E64D3AB00E3AF2A /* ClubeModel.swift in Sources */,
 				D7EF25D11E6227E5001748DB /* JogadorVC.swift in Sources */,
 				D7EF25CF1E6225D3001748DB /* VendaVC.swift in Sources */,
+				D71C01AD1E64CC6400E3AF2A /* JogadorModel.swift in Sources */,
+				D71C01B31E65B95000E3AF2A /* MovimentoFinanceiroModel.swift in Sources */,
 				D71B9CA21E6352A800336B5E /* FinancasVC.swift in Sources */,
 				D7EF25D71E630E73001748DB /* ClubeTVC.swift in Sources */,
+				D71C01B91E689EDB00E3AF2A /* BaseDados.swift in Sources */,
 				D7EF25D31E622CD4001748DB /* JogadorTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
