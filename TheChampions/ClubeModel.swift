@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import ChameleonFramework
 
 class Clube : Object {
   //Chave
@@ -18,5 +19,7 @@ class Clube : Object {
   dynamic var estadio : Estadio? = nil
   let elenco = List<Jogador>()
   let historicoFinanceiro = List<MovimentoFinanceiro>()
+  dynamic var corPrincipal = FlatWhite().hexValue()
+  dynamic var corSecundaria = FlatBlack().hexValue()
   
 }

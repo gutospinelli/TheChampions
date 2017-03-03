@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import ChameleonFramework
 
 class BaseDados {
 
@@ -15,6 +16,7 @@ class BaseDados {
   
   var jogadores : [Jogador] = []
   var clubes : [Clube] = []
+  var clubeJogador : Clube? = nil
   
   func deleteAllDatabase() {
     let realm = try! Realm()
@@ -48,6 +50,33 @@ class BaseDados {
     
   }
   
+  func escolherClube(jogarCom clube: String) {
+    do
+    {
+      let realm = try Realm()
+      let configuracaoJogo = realm.objects(Config.self)
+      
+      //Neste caso não há configuração, precisamos criá-la
+      if configuracaoJogo.count == 0 {
+        let c = Config()
+        c.clubeUsuario = clube
+        try! realm.write {
+          realm.add(c)
+        }
+      } else { //Se temos, só mudamos para o clube escolhido
+        try! realm.write {
+          configuracaoJogo[0].clubeUsuario = clube
+        }
+      }
+      let filtro = "name = '" + clube + "'"
+      clubeJogador = realm.objects(Clube.self).filter(filtro).first
+    }
+    catch
+    {
+        
+    }
+  }
+  
   func createBarca() -> Clube {
     
     let e = Estadio()
@@ -75,6 +104,9 @@ class BaseDados {
     c.valorCaixa = 24500000
     c.estadio = e
     c.elenco.append(j)
+    c.corPrincipal = FlatBlueDark().hexValue()
+    c.corSecundaria = FlatRed().hexValue()
+    
     
     let m = MovimentoFinanceiro()
     m.dataEvento = Date()
@@ -126,6 +158,8 @@ class BaseDados {
     c.valorCaixa = 30000000
     c.estadio = e
     c.elenco.append(j) //associa jogadores ao clube
+    c.corPrincipal =  FlatWhite().hexValue()
+    c.corSecundaria = FlatBlue().hexValue()
     
     //Cria movimento inicial
     let m = MovimentoFinanceiro()

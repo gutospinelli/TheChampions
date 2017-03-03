@@ -7,53 +7,49 @@
 //
 
 import UIKit
+import RealmSwift
 
 class FinancasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBOutlet weak var tableViewFinancas: UITableView!
+  @IBOutlet weak var tableViewFinancas: UITableView!
     
-    var movimentacaoFinanceira : [(
-        nome: String,
-        valor: Int,
-        saldo: Int)] =
-        [
-            ("Início Carreira",0,200000),
-            ("Ingressos Man Untd vs Leicester",20000,220000),
-            ("Salários",-15000,205000),
-            ("Transferência Venda Ibra",500000,720000),
-            ("Transferência Compra Pogba",-300000,420000)
-    ]
+  var movimentacaoFinanceira : [MovimentoFinanceiro] = []
+  var realm = try! Realm()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    let results = realm.objects(Clube.self).filter("name = 'Barcelona FC'")
+    let clubeAtual = results[0]
+    movimentacaoFinanceira = Array(clubeAtual.historicoFinanceiro)
+    
+  }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // MARK: - Table view data source
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return movimentacaoFinanceira.count
-    }
-    
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "movimentacaoFinanceiraCell", for: indexPath) as! MovimentacaoTVCell
-        cell.lblNome.text = movimentacaoFinanceira[indexPath.row].nome
-        cell.lblValor.text = "\(movimentacaoFinanceira[indexPath.row].valor)"
-        cell.lblSaldo.text = "\(movimentacaoFinanceira[indexPath.row].saldo)"
+  override func didReceiveMemoryWarning() {
+      super.didReceiveMemoryWarning()
+      // Dispose of any resources that can be recreated.
+  }
+  
+  // MARK: - Table view data source
+  
+  func numberOfSections(in tableView: UITableView) -> Int {
+      return 1
+  }
+  
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+      // #warning Incomplete implementation, return the number of rows
+      return movimentacaoFinanceira.count
+  }
+  
+  
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+      let cell = tableView.dequeueReusableCell(withIdentifier: "movimentacaoFinanceiraCell", for: indexPath) as! MovimentacaoTVCell
+      cell.lblNome.text = movimentacaoFinanceira[indexPath.row].nomeEvento
+      cell.lblValor.text = "\(movimentacaoFinanceira[indexPath.row].movimento)"
+      cell.lblSaldo.text = "\(movimentacaoFinanceira[indexPath.row].saldo)"
 
-        return cell
-    }
+      return cell
+  }
 
     
 
