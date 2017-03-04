@@ -7,37 +7,45 @@
 //
 
 import UIKit
-import RealmSwift
+import ChameleonFramework
 
 class FinancasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
   @IBOutlet weak var tableViewFinancas: UITableView!
-    
+
   var movimentacaoFinanceira : [MovimentoFinanceiro] = []
-  var realm = try! Realm()
-    
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    let clubeAtual =  BaseDados.instance.clubeJogador!
     
-    let results = realm.objects(Clube.self).filter("name = 'Barcelona FC'")
-    let clubeAtual = results[0]
     movimentacaoFinanceira = Array(clubeAtual.historicoFinanceiro)
     
+    let corPrincipal = HexColor(clubeAtual.corPrincipal)!
+    //let corSecundaria = HexColor(clubeAtual.corSecundaria)!
+    let corTexto = ContrastColorOf(corPrincipal, returnFlat: true)
+    
+    //Muda fundos
+    self.view.backgroundColor = corPrincipal
+    tableViewFinancas.backgroundColor = corPrincipal
+    //Muda a cor de todos os textos
+    for v in self.view.subviews {
+      if v.isKind(of: UILabel.self) {
+        let lab : UILabel = v as! UILabel
+        lab.textColor = corTexto
+      }
+    }
   }
 
-  override func didReceiveMemoryWarning() {
-      super.didReceiveMemoryWarning()
-      // Dispose of any resources that can be recreated.
-  }
   
-  // MARK: - Table view data source
+  // MARK: - TableView
   
   func numberOfSections(in tableView: UITableView) -> Int {
       return 1
   }
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-      // #warning Incomplete implementation, return the number of rows
       return movimentacaoFinanceira.count
   }
   
@@ -50,17 +58,5 @@ class FinancasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
       return cell
   }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

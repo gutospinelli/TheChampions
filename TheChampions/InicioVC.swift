@@ -58,7 +58,7 @@ class InicioVC: UIViewController {
     BaseDados.instance.clubes.append(BaseDados.instance.createBarca())
     BaseDados.instance.clubes.append(BaseDados.instance.createReal())
     BaseDados.instance.startTemporada(inicioEm: 2017, participantes: BaseDados.instance.clubes)
-    BaseDados.instance.escolherClube(jogarCom: "Real Madrid")
+    BaseDados.instance.escolherClube(jogarCom: "Barcelona FC")
   }
 
 

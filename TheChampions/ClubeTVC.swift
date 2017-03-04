@@ -129,10 +129,14 @@ class ClubeTVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
+      if let identifier = segue.identifier {
             switch identifier {
             case "mostraDetalheJogador":
-                segue.destination.hidesBottomBarWhenPushed =  true
+              if let vc = segue.destination as? JogadorVC {
+                let jogadorCell = sender as? JogadorTVCell
+                vc.jogadorAtual = BaseDados.instance.retornaJogador(chamado: (jogadorCell?.lblNome.text)!)
+              segue.destination.hidesBottomBarWhenPushed =  true
+              }
             default:
                 segue.destination.hidesBottomBarWhenPushed =  true
             }

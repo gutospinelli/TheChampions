@@ -17,9 +17,9 @@ class BaseDados {
   var jogadores : [Jogador] = []
   var clubes : [Clube] = []
   var clubeJogador : Clube? = nil
+  let realm = try! Realm()
   
   func deleteAllDatabase() {
-    let realm = try! Realm()
     try! realm.write {
       realm.deleteAll()
     }
@@ -40,20 +40,17 @@ class BaseDados {
     }
     
     do {
-      let realm = try Realm()
+      //let realm = try Realm()
       try! realm.write {
         realm.add(tabela)
       }
-    } catch {
-      
     }
-    
   }
   
   func escolherClube(jogarCom clube: String) {
     do
     {
-      let realm = try Realm()
+      //let realm = try Realm()
       let configuracaoJogo = realm.objects(Config.self)
       
       //Neste caso não há configuração, precisamos criá-la
@@ -71,10 +68,11 @@ class BaseDados {
       let filtro = "name = '" + clube + "'"
       clubeJogador = realm.objects(Clube.self).filter(filtro).first
     }
-    catch
-    {
-        
-    }
+  }
+  
+  func retornaJogador(chamado nome: String) -> Jogador {
+    let filtro = "nome = '" + nome + "'"
+    return realm.objects(Jogador.self).filter(filtro).first!
   }
   
   func createBarca() -> Clube {
@@ -86,8 +84,8 @@ class BaseDados {
     e.valorIngresso = 15
     
     let j = Jogador()
-    j.posicao = "GK"
-    j.nome = "Ter Stegen"
+    j.posicao = "MEI"
+    j.nome = "Yaya Touré"
     j.nacionalidade = "🇩🇪"
     j.defesa = 90
     j.passe = 90
@@ -95,7 +93,7 @@ class BaseDados {
     j.overall = (j.ataque + j.defesa + j.passe) / 3
     j.valor = 32000000
     j.salario = 100000
-    j.especial = Especial.PK_Hero.rawValue
+    j.especial = Especial.TheBeast.rawValue
     
     
     let c = Clube()
@@ -118,15 +116,13 @@ class BaseDados {
     jogadores.append(j)
     
     do {
-      let realm = try Realm()
+      //let realm = try Realm()
       try! realm.write {
         realm.add(e)
         realm.add(j)
         realm.add(c)
       }
       print(Realm.Configuration.defaultConfiguration.fileURL!)
-    } catch {
-      
     }
     return c
   }
@@ -140,8 +136,8 @@ class BaseDados {
     e.valorIngresso = 15
     //Cria Jogadores
     let j = Jogador()
-    j.posicao = "GK"
-    j.nome = "Keylor Navas"
+    j.posicao = "ATA"
+    j.nome = "Cristiano Ronaldo"
     j.nacionalidade = "🇨🇷"
     j.defesa = 85
     j.passe = 85
@@ -149,7 +145,7 @@ class BaseDados {
     j.overall = (j.ataque + j.defesa + j.passe) / 3
     j.valor = 1500000
     j.salario = 75000
-    j.especial = Especial.Peladeiro.rawValue
+    j.especial = Especial.Hero.rawValue
     
     //Cria Clube
     let c = Clube()
@@ -173,15 +169,13 @@ class BaseDados {
     jogadores.append(j)
     
     do {
-      let realm = try Realm()
+      //let realm = try Realm()
       try! realm.write {
         realm.add(e)
         realm.add(j)
         realm.add(c)
       }
       print(Realm.Configuration.defaultConfiguration.fileURL!)
-    } catch {
-      
     }
     return c
   }
