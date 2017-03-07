@@ -42,58 +42,74 @@ class ClubeTVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
   var corSecundaria = FlatBlack()
   var corTexto = FlatBlue()
   
-    override func viewDidLoad() {
-      super.viewDidLoad()
-      tableViewJogadores.delegate = self
-      tableViewJogadores.dataSource = self
-      //Pega o clube do jogador da tabela de configuracao
-      if let config = realm.objects(Config.self).first {
-        clubeJogador = config.clubeUsuario
-      }
-      
-      let filtro = "name = '" + clubeJogador + "'"
-      if let clubeAtual = realm.objects(Clube.self).filter(filtro).first {
-        jogadores = Array(clubeAtual.elenco)
-        lblNomeClube.text = clubeAtual.name
-        lblNomeClubeCasa.text = clubeAtual.name
-        lblEstadio.text = clubeAtual.estadio?.nome
-        let capacidade : Int = (clubeAtual.estadio?.assentos)!
-        lblCapacidadeEstadio.text = "\(capacidade)"
-        lblTecnico.text = clubeAtual.tecnico
-        lblValorCaixa.text = "\(clubeAtual.valorCaixa)"
-        let somaSalarios : Int = clubeAtual.elenco.sum(ofProperty: "salario")
-        lblValorSalarios.text = "\(somaSalarios)"
-        
-        
-        //lblPosicao.text = "\(clubeAtual.posicaoTemporadaAtual?.posicao)"
-        //lblPontos.text = "\(clubeAtual.posicaoTemporadaAtual?.pontos)"
-        
-        corPrincipal = HexColor(clubeAtual.corPrincipal)!
-        corSecundaria = HexColor(clubeAtual.corSecundaria)!
-        corTexto = ContrastColorOf(corPrincipal, returnFlat: true)
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tableViewJogadores.delegate = self
+    tableViewJogadores.dataSource = self
+    carregaDados()
 
-        //Muda fundos
-        self.view.backgroundColor = corPrincipal
-        tableViewJogadores.backgroundColor = corPrincipal
-        //Muda a cor de todos os textos
-        for v in self.view.subviews {
-          if v.isKind(of: UILabel.self) {
-            let lab : UILabel = v as! UILabel
-            lab.textColor = corTexto
-          }
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    carregaDados()
+    tableViewJogadores.reloadData()
+  }
+  
+  func carregaDados() {
+    //Pega o clube do jogador da tabela de configuracao
+    if let config = realm.objects(Config.self).first {
+      clubeJogador = config.clubeUsuario
+    }
+    
+    let filtro = "name = '" + clubeJogador + "'"
+    if let clubeAtual = realm.objects(Clube.self).filter(filtro).first {
+      jogadores = Array(clubeAtual.elenco)
+      lblNomeClube.text = clubeAtual.name
+      lblNomeClubeCasa.text = clubeAtual.name
+      lblEstadio.text = clubeAtual.estadio?.nome
+      let capacidade : Int = (clubeAtual.estadio?.assentos)!
+      lblCapacidadeEstadio.text = "\(capacidade)"
+      lblTecnico.text = clubeAtual.tecnico
+      
+      //Conversão para Currency
+      let caixa = NSDecimalNumber(decimal: Decimal(clubeAtual.valorCaixa))
+      let somaSalarios : Int = clubeAtual.elenco.sum(ofProperty: "salario")
+      let salarios = NSDecimalNumber(decimal: Decimal(somaSalarios))
+      let numberFormatter = NumberFormatter()
+      numberFormatter.numberStyle = .currency
+      numberFormatter.locale = Locale(identifier: "en_US")
+      lblValorCaixa.text = numberFormatter.string(from: caixa)
+      lblValorSalarios.text = numberFormatter.string(from: salarios)
+      
+      let posicaoTabela = clubeAtual.posicaoTabela.first!
+      lblPosicao.text = "\(posicaoTabela.posicao)"
+      lblPontos.text = "\(posicaoTabela.pontos)"
+      
+      corPrincipal = HexColor(clubeAtual.corPrincipal)!
+      corSecundaria = HexColor(clubeAtual.corSecundaria)!
+      corTexto = ContrastColorOf(corPrincipal, returnFlat: true)
+      
+      //Muda fundos
+      self.view.backgroundColor = corPrincipal
+      tableViewJogadores.backgroundColor = corPrincipal
+      //Muda a cor de todos os textos
+      for v in self.view.subviews {
+        if v.isKind(of: UILabel.self) {
+          let lab : UILabel = v as! UILabel
+          lab.textColor = corTexto
         }
-        //Muda quem deve ter cor secundária
-        lblNomeClube.textColor = corSecundaria
-        line1.textColor = corSecundaria
-        line2.textColor = corSecundaria
-        line3.textColor = corSecundaria
-        //Muda cor dos botões
-        btnJogar.tintColor = corTexto
-        btnConquistas.tintColor = corTexto
-      
       }
-
-
+      //Muda quem deve ter cor secundária
+      lblNomeClube.textColor = corSecundaria
+      line1.textColor = corSecundaria
+      line2.textColor = corSecundaria
+      line3.textColor = corSecundaria
+      //Muda cor dos botões
+      btnJogar.tintColor = corTexto
+      btnConquistas.tintColor = corTexto
+      
+    }
   }
 
 

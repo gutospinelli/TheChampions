@@ -22,4 +22,6 @@ class Clube : Object {
   dynamic var corPrincipal = FlatWhite().hexValue()
   dynamic var corSecundaria = FlatBlack().hexValue()
   
+  let posicaoTabela = LinkingObjects(fromType: PosicaoTabela.self, property: "equipe")
+  
 }

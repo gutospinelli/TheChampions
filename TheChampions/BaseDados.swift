@@ -70,6 +70,59 @@ class BaseDados {
     }
   }
   
+  func aumentaIngresso(do estadioNome: String, valorAtual ingresso: Int) -> Int {
+    let filtro = "nome = '" + estadioNome + "'"
+    let estadio = realm.objects(Estadio.self).filter(filtro).first
+    try! realm.write {
+      estadio?.valorIngresso = estadio!.valorIngresso + 1
+    }
+    return estadio!.valorIngresso
+  }
+  
+  func diminuiIngresso(do estadioNome: String, valorAtual ingresso: Int) -> Int {
+    let filtro = "nome = '" + estadioNome + "'"
+    let estadio = realm.objects(Estadio.self).filter(filtro).first
+    try! realm.write {
+      estadio?.valorIngresso = estadio!.valorIngresso - 1
+    }
+    return estadio!.valorIngresso
+  }
+  
+  func constroiArquibancada(do estadioNome: String) -> Int {
+    let filtro = "nome = '" + estadioNome + "'"
+    let estadio = realm.objects(Estadio.self).filter(filtro).first
+    let movimentacao = MovimentoFinanceiro()
+    movimentacao.dataEvento = Date()
+    movimentacao.movimento = -100000
+    movimentacao.nomeEvento = "Construção arquibancada"
+    movimentacao.saldo = (estadio!.clube.first?.valorCaixa)! - 100000
+    
+    try! realm.write {
+      estadio?.assentos = estadio!.assentos + 5000
+      estadio!.clube.first?.valorCaixa -= 100000
+      estadio!.clube.first?.historicoFinanceiro.append(movimentacao)
+    }
+    return estadio!.assentos
+  }
+  
+  func vendeJogador(chamado nome: String) {
+    let filtro = "nome = '" + nome + "'"
+    let jogador = realm.objects(Jogador.self).filter(filtro).first
+    let clube = BaseDados.instance.clubeJogador
+    let index = clube?.elenco.index(of: jogador!)
+    let movimentacao = MovimentoFinanceiro()
+    movimentacao.dataEvento = Date()
+    movimentacao.movimento = jogador!.valor
+    movimentacao.nomeEvento = "Venda do " + jogador!.nome
+    movimentacao.saldo = clube!.valorCaixa + jogador!.valor
+    try! realm.write {
+      clube?.valorCaixa += jogador!.valor
+      clube?.elenco.remove(objectAtIndex: index!)
+      clube?.historicoFinanceiro.append(movimentacao)
+    }
+    
+  }
+  
   func retornaJogador(chamado nome: String) -> Jogador {
     let filtro = "nome = '" + nome + "'"
     return realm.objects(Jogador.self).filter(filtro).first!

@@ -47,7 +47,7 @@ class JogadorVC: UIViewController {
     lblNacionalidadeImg.text = jogadorAtual!.nacionalidade
     lblGols.text = "\(jogadorAtual!.gols)"
     lblAssistencias.text = "\(jogadorAtual!.assistencias)"
-    lblValorOverall.text = "\(jogadorAtual?.overall)"
+    lblValorOverall.text = "\(jogadorAtual!.overall)"
     
     switch jogadorAtual!.especialEnum {
     case .Hero:
@@ -56,6 +56,12 @@ class JogadorVC: UIViewController {
       imgJogador.image = #imageLiteral(resourceName: "TikTaker")
     case .TheBeast:
       imgJogador.image = #imageLiteral(resourceName: "TheBeast")
+    case .Sweeper:
+      imgJogador.image = #imageLiteral(resourceName: "Sweeper")
+    case .Wing:
+      imgJogador.image = #imageLiteral(resourceName: "Wing")
+    case .Alien:
+      imgJogador.image = #imageLiteral(resourceName: "Alien")
     default:
       imgJogador.image = #imageLiteral(resourceName: "jogador")
     }

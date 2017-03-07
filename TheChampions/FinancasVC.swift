@@ -14,17 +14,27 @@ class FinancasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   @IBOutlet weak var tableViewFinancas: UITableView!
 
   var movimentacaoFinanceira : [MovimentoFinanceiro] = []
+  var corPrincipal = FlatWhite()
+  var corTexto = FlatRed()
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    carregaDados()
 
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    carregaDados()
+    tableViewFinancas.reloadData()
+  }
+  
+  func carregaDados() {
     let clubeAtual =  BaseDados.instance.clubeJogador!
-    
     movimentacaoFinanceira = Array(clubeAtual.historicoFinanceiro)
     
-    let corPrincipal = HexColor(clubeAtual.corPrincipal)!
-    //let corSecundaria = HexColor(clubeAtual.corSecundaria)!
-    let corTexto = ContrastColorOf(corPrincipal, returnFlat: true)
+    corPrincipal = HexColor(clubeAtual.corPrincipal)!
+    corTexto = ContrastColorOf(corPrincipal, returnFlat: true)
     
     //Muda fundos
     self.view.backgroundColor = corPrincipal
@@ -51,10 +61,25 @@ class FinancasVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      let cell = tableView.dequeueReusableCell(withIdentifier: "movimentacaoFinanceiraCell", for: indexPath) as! MovimentacaoTVCell
-      cell.lblNome.text = movimentacaoFinanceira[indexPath.row].nomeEvento
-      cell.lblValor.text = "\(movimentacaoFinanceira[indexPath.row].movimento)"
-      cell.lblSaldo.text = "\(movimentacaoFinanceira[indexPath.row].saldo)"
+    let cell = tableView.dequeueReusableCell(withIdentifier: "movimentacaoFinanceiraCell", for: indexPath) as! MovimentacaoTVCell
+    cell.lblNome.text = movimentacaoFinanceira[indexPath.row].nomeEvento
+    
+    let mov = NSDecimalNumber(decimal: Decimal(movimentacaoFinanceira[indexPath.row].movimento))
+    let saldo = NSDecimalNumber(decimal: Decimal(movimentacaoFinanceira[indexPath.row].saldo))
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .currency
+    numberFormatter.locale = Locale(identifier: "en_US")
+    
+    cell.lblValor.text = numberFormatter.string(from: mov)
+    cell.lblSaldo.text = numberFormatter.string(from: saldo)
+    
+
+    
+    cell.backgroundColor = corPrincipal
+    cell.lblNome.textColor = corTexto
+    cell.lblValor.textColor = corTexto
+    cell.lblSaldo.textColor = corTexto
+
 
       return cell
   }

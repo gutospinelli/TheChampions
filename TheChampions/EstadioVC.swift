@@ -38,13 +38,16 @@ class EstadioVC: UIViewController {
   
   // MARK: Metodos
   @IBAction func aumentaValorIngresso(_ sender: UIButton) {
-    
+    let novoValor = BaseDados.instance.aumentaIngresso(do: lblEstadio.text!, valorAtual: Int(lblValorIngresso.text!)!)
+    lblValorIngresso.text = "\(novoValor)"
   }
   @IBAction func diminuiValorIngresso(_ sender: UIButton) {
-    
+    let novoValor = BaseDados.instance.diminuiIngresso(do: lblEstadio.text!, valorAtual: Int(lblValorIngresso.text!)!)
+    lblValorIngresso.text = "\(novoValor)"
   }
   @IBAction func aumentaCapacidadeAssentos(_ sender: UIButton) {
-    
+    let novoValor = BaseDados.instance.constroiArquibancada(do: lblEstadio.text!)
+    lblAssentos.text = "\(novoValor)"
   }
 
 

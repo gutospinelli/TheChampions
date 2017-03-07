@@ -18,6 +18,8 @@ class VendaVC: UIViewController {
     @IBOutlet weak var lblValor: UILabel!
 
     @IBAction func aceitaVenda() {
+      BaseDados.instance.vendeJogador(chamado: lblJogador.text!)
+      self.dismiss(animated: true, completion: nil)
     }
     @IBAction func recusaVenda() {
         self.dismiss(animated: true, completion: nil)

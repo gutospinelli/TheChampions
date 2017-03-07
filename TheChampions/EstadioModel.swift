@@ -16,6 +16,8 @@ class Estadio : Object {
   dynamic var assentos = 0
   dynamic var ocupacaoMedia = 0
   dynamic var valorIngresso = 0
-  dynamic var custoManutencao = 0 
+  dynamic var custoManutencao = 0
+  
+  let clube = LinkingObjects(fromType: Clube.self, property: "estadio")
 		
 }
