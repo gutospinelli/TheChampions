@@ -8,6 +8,8 @@ target 'TheChampions' do
   # Pods for TheChampions
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   pod 'RealmSwift'
+  pod 'SCLAlertView'
+  pod 'Charts'
 end
 
 post_install do |installer|

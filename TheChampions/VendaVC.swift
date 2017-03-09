@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import SCLAlertView
 
 class VendaVC: UIViewController {
 
@@ -19,10 +20,14 @@ class VendaVC: UIViewController {
 
     @IBAction func aceitaVenda() {
       BaseDados.instance.vendeJogador(chamado: lblJogador.text!)
-      self.dismiss(animated: true, completion: nil)
+      self.dismiss(animated: true) {
+        SCLAlertView().showSuccess("Informação do Agente", subTitle: "Jogador Vendido")
+      }
     }
     @IBAction func recusaVenda() {
-        self.dismiss(animated: true, completion: nil)
+      self.dismiss(animated: true) {
+        SCLAlertView().showError("Informação do Agente", subTitle: "Desistiu da Venda")
+      }
     }
     
     

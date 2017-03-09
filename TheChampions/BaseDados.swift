@@ -142,7 +142,7 @@ class BaseDados {
     j.nacionalidade = "🇩🇪"
     j.defesa = 90
     j.passe = 90
-    j.ataque = 70
+    j.ataque = 80
     j.overall = (j.ataque + j.defesa + j.passe) / 3
     j.valor = 32000000
     j.salario = 100000
