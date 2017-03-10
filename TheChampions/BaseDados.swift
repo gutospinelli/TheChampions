@@ -128,6 +128,25 @@ class BaseDados {
     return realm.objects(Jogador.self).filter(filtro).first!
   }
   
+  func readJson(json arquivo:String) -> [[Any]] {
+    do {
+      if let file = Bundle.main.url(forResource: arquivo, withExtension: "json") {
+        let data = try Data(contentsOf: file)
+        let json = try JSONSerialization.jsonObject(with: data, options: [])
+        if let object = json as? [[Any]] {
+          return object //se transformou, retorna
+        } else {
+          print("JSON is invalid")
+        }
+      } else {
+        print("no file")
+      }
+    } catch {
+      print(error.localizedDescription)
+    }
+    return [[]] //Se deu pau, retorna um array vazio
+  }
+  
   func createBarca() -> Clube {
     
     let e = Estadio()
@@ -136,25 +155,12 @@ class BaseDados {
     e.custoManutencao = 200000
     e.valorIngresso = 15
     
-    let j = Jogador()
-    j.posicao = "MEI"
-    j.nome = "Yaya Touré"
-    j.nacionalidade = "🇩🇪"
-    j.defesa = 90
-    j.passe = 90
-    j.ataque = 80
-    j.overall = (j.ataque + j.defesa + j.passe) / 3
-    j.valor = 32000000
-    j.salario = 100000
-    j.especial = Especial.TheBeast.rawValue
-    
-    
     let c = Clube()
     c.name = "Barcelona FC"
     c.tecnico = "Luis Henrique"
     c.valorCaixa = 24500000
     c.estadio = e
-    c.elenco.append(j)
+
     c.corPrincipal = FlatBlueDark().hexValue()
     c.corSecundaria = FlatRed().hexValue()
     
@@ -165,20 +171,36 @@ class BaseDados {
     m.saldo = c.valorCaixa
     m.movimento = c.valorCaixa
     c.historicoFinanceiro.append(m) //associa histórico ao clube
-    
-    jogadores.append(j)
+  
+    let clubes = readJson(json: "clubes")
+    for i in 0 ..< clubes.count{
+      let j = Jogador()
+      j.posicao = clubes[i][1] as! String
+      j.nome = clubes[i][2] as! String
+      j.nacionalidade = clubes[i][3] as! String
+      j.passe = clubes[i][4] as! Int
+      j.ataque = clubes[i][5] as! Int
+      j.defesa = clubes[i][6] as! Int
+      j.overall = (j.ataque + j.defesa + j.passe) / 3
+      j.salario = clubes[i][7] as! Int
+      j.valor = clubes[i][8] as! Int
+      j.especial = clubes[i][9] as! String
+      jogadores.append(j)
+      c.elenco.append(j)
+    }
     
     do {
-      //let realm = try Realm()
+      //Adiciona jogadores, clube e elenco no Realm
       try! realm.write {
         realm.add(e)
-        realm.add(j)
         realm.add(c)
       }
-      print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
+    
+    print(Realm.Configuration.defaultConfiguration.fileURL!)
     return c
   }
+
   
   func createReal() -> Clube {
     //Cria Estádio

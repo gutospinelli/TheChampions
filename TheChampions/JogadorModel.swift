@@ -47,7 +47,7 @@ enum Especial : String {
   case Wing = "+15% PASSE"
   case Hero = "+25% ALL"
   case Alien = "+50% ATAQUE e 15% DEFESA E PASSE"
-  case Peladeiro = "No Bônus"
+  case Peladeiro = "No Bonus"
 }
 
 
